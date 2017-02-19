@@ -7,11 +7,13 @@ d3.csv('food.csv', (error, data) => {
     console.log(error);
   } else {
     dataset = data;
-    body.selectAll('p')
+    body.selectAll('div')
       .data(dataset)
       .enter()
-      .append('p')
-      .text(d => { return `${d.Food} ${d.Deliciousness}`})
-      .style('color', 'red');
+      .append('div')
+      .attr('class', 'bar')
+      .style('height', d => {
+        return (d.Deliciousness * 3) + 'px';
+      });
   }
 });
