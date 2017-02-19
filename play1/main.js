@@ -13,7 +13,7 @@ d3.csv('food.csv', (error, data) => {
       .append('div')
       .attr('class', 'bar')
       .style('height', d => {
-        return (d.Deliciousness * 3) + 'px';
+        return (d.Deliciousness * 5) + 'px';
       });
   }
 });
