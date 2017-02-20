@@ -55,9 +55,10 @@ var svg2 = body.append('svg')
     .selectAll('rect').data(ds2).enter()
     .append('rect')
     .attr('x', (_, i) => i * (w / ds2.length))
-    .attr('y', d => h - d * 4)
+    .attr('y', d => (h - d) * 4)
     .attr('width', w / ds2.length - barPadding)
-    .attr('height', d => d * 4);
+    .attr('height', d => d * 4)
+    .attr('fill', 'teal');
 
 
 
