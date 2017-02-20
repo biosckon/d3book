@@ -45,15 +45,24 @@ var circles = svg.selectAll('circle')
   .enter()
   .append('circle');
 
-circles.attr('cx', (d, i) => {
-    return (i * 50) + 25;
-  })
+circles.attr('cx', (d, i) => (i * 50) + 25)
   .attr('cy', h / 2)
-  .attr('r', d => {
-    return d;
-  })
+  .attr('r', d => d)
   .attr('fill', 'yellow')
   .attr('stroke', 'orange')
-  .attr('stroke-width', d => {
-    return d/2;
-  });
+  .attr('stroke-width', d => d/2);
+
+  // bar chart with SVG
+  var barPadding = 1;
+  var svg2 = body.append('svg')
+    .attr('width', w).attr('height', h)
+    .selectAll('rect').data(ds2).enter()
+    .append('rect')
+    .attr('x', (_, i) => i * (w / ds2.length))
+    .attr('y', d => h - d)
+    .attr('width', w / ds2.length - barPadding)
+    .attr('height', d => d);
+
+
+
+  //
