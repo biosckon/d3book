@@ -1,7 +1,15 @@
 div.bar {
   display: inline-block;
-  width: 20px;
+  width: 10px;
   height: 75px;
   background-color: teal;
+  margin-right: 2px;
+}
+
+div.bar2 {
+  display: inline-block;
+  width: 10px;
+  height: 75px;
+  background-color: red;
   margin-right: 2px;
 }
