@@ -58,7 +58,11 @@ var svg2 = body.append('svg')
     .attr('y', d => (h - d) * 4)
     .attr('width', w / ds2.length - barPadding)
     .attr('height', d => d * 4)
-    .attr('fill', 'teal');
+    .attr('fill', d => {
+        console.log(`rgb(0, 0, ${Math.round(d * 10)})`);
+        return `rgb(0, 0, ${Math.round(d * 10)})`;});
+
+
 
 
 
