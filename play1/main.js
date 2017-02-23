@@ -32,7 +32,7 @@ body.selectAll('div')
 
 // SVG
 var w = 500;
-var h = 50;
+var h = 80;
 
 var svg = body.append('svg');
 svg.attr('width', w).attr('height', h);
@@ -50,17 +50,27 @@ circles.attr('cx', (d, i) => (i * 50) + 25)
 
 // bar chart with SVG
 var barPadding = 1;
-var svg2 = body.append('svg')
-    .attr('width', w).attr('height', h * 4)
+var svg2 = body.append('svg');
+svg2.attr('width', w).attr('height', h * 4)
     .selectAll('rect').data(ds2).enter()
     .append('rect')
-    .attr('x', (_, i) => i * (w / ds2.length))
-    .attr('y', d => (h - d) * 4)
-    .attr('width', w / ds2.length - barPadding)
-    .attr('height', d => d * 4)
-    .attr('fill', d => {
-        console.log(`rgb(0, 0, ${Math.round(d * 10)})`);
-        return `rgb(0, 0, ${Math.round(d * 10)})`;});
+    .attr({
+        x: (_, i) => i * (w / ds2.length),
+        y: d => (h - d) * 4,
+        width: w / ds2.length - barPadding,
+        height: d => d * 4,
+        fill: d => `rgb(0, 0, ${Math.round(d * 10)})`
+    });
+
+// labels
+svg2.selectAll('text')
+    .data(ds2).enter().append('text')
+    .text(d => Math.round(d))
+    .attr({
+        x: (_, i) => i * (w / ds2.length),
+        y: d => Math.round((h - d) * 4)
+    });
+
 
 
 
