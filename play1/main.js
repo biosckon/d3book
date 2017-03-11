@@ -109,4 +109,54 @@ svg3.selectAll('text')
         'text-anchor': 'middle'
     });
 
+// scales
+var ds4 = [100, 200, 300, 400, 500];
+var scale = d3.scale.linear();
+scale(2.5); // return 2.5 default scale 1:1
+scale.domain([100, 500]);
+scale.range([10, 350]);
+// or
+var scale = d3.scale.linear().domain([100, 500]).range([10, 350]);
+
+// scaling scatterplot
+var ds5 = [
+    [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
+    [410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
+]
+
+var xscale = d3.scale.linear()
+    .domain([0, d3.max(ds5, d => d[0])])
+    .range([0, w]);
+var yscale = d3.scale.linear()
+    .domain([0, d3.max(ds5, d => d[1])])
+    .range([h, 0]); // inverted scales to grow up
+
+//
+var svg5 = body.append('svg');
+svg5.attr({
+    width: w,
+    height: h
+});
+svg5.selectAll('circle')
+    .data(ds5).enter().append('circle')
+    .attr({
+        cx: d => xscale(d[0]),
+        cy: d => yscale(d[1]),
+        r: d => 5
+    })
+
+svg5.selectAll('text')
+    .data(ds5).enter().append('text')
+    .text(d => `${Math.round(d[0])}, ${Math.round(d[1])}`)
+    .attr({
+        x: d => xscale(d[0]),
+        y: d => yscale(d[1]),
+        'font-family': 'sans-serif',
+        'font-size': '11px',
+        'fill': 'red',
+        'text-anchor': 'middle'
+    });
+
+
+
 //
