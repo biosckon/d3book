@@ -124,12 +124,22 @@ var ds5 = [
     [410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
 ]
 
+// original no padding
 var xscale = d3.scale.linear()
     .domain([0, d3.max(ds5, d => d[0])])
     .range([0, w]);
 var yscale = d3.scale.linear()
     .domain([0, d3.max(ds5, d => d[1])])
     .range([h, 0]); // inverted scales to grow up
+
+// with padding
+var padding = 20;
+var xscale = d3.scale.linear()
+    .domain([0, d3.max(ds5, d => d[0])])
+    .range([padding, w - padding]);
+var yscale = d3.scale.linear()
+    .domain([0, d3.max(ds5, d => d[1])])
+    .range([h - padding, padding]); // inverted scales to grow up
 
 //
 var svg5 = body.append('svg');
@@ -156,6 +166,7 @@ svg5.selectAll('text')
         'fill': 'red',
         'text-anchor': 'middle'
     });
+
 
 
 
