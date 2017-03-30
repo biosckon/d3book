@@ -163,7 +163,7 @@ svg5.selectAll('text')
         y: d => yscale(d[1]),
         'font-family': 'sans-serif',
         'font-size': '11px',
-        'fill': 'red',
+        fill: 'red',
         'text-anchor': 'middle'
     });
 
